@@ -7,7 +7,7 @@ from pymongo.database import Database
 from pynject import pynject
 
 from antibot.addons.addon_runner import AddOnRunnerProvider
-from antibot.addons.auth import AddOnInstallation
+from antibot.domain.auth import AddOnInstallation
 from antibot.addons.descriptors import AddOnDescriptor
 from antibot.addons.dialog_runner import DialogRunner
 from antibot.addons.glance_runner import GlanceRunner

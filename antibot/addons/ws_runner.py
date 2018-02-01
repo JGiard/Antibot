@@ -1,7 +1,8 @@
 from bottle import abort, response
 from pynject import pynject, Injector
 
-from antibot.addons.auth import AuthChecker, AuthResult
+from antibot.addons.auth import AuthChecker
+from antibot.domain.auth import AuthResult
 from antibot.addons.descriptors import AddOnDescriptor, WsDescriptor
 from antibot.addons.tokens import TokenProvider
 from antibot.addons.utils import addon_method_runner

@@ -1,6 +1,7 @@
 from bottle import abort, response
 
-from antibot.addons.auth import AuthChecker, AuthResult
+from antibot.addons.auth import AuthChecker
+from antibot.domain.auth import AuthResult
 from antibot.addons.descriptors import AddOnDescriptor, PanelDescriptor
 from antibot.addons.utils import addon_method_runner
 from antibot.domain.configuration import Configuration

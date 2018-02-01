@@ -5,7 +5,7 @@ import requests
 from pyckson import serialize, parse
 from pymongo.database import Database
 
-from antibot.addons.auth import AddOnInstallation
+from antibot.domain.auth import AddOnInstallation
 from antibot.addons.descriptors import AddOnDescriptor
 from antibot.constants import ADDON_TOKENS_DB, ADDON_INSTALLATIONS_DB, ADDON_CAPABILITIES_DB, API_ENDPOINT
 from antibot.domain.room import Room
