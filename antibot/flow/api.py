@@ -46,7 +46,7 @@ class HipchatApi:
             'message': message,
         }
         if room.is_private:
-            token = HipchatAuth(self.token_provider.get_token(room.addon, room))
+            token = HipchatAuth(self.token_provider.get_token(room.addon, room).access_token)
         else:
             token = self.auth
         r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=token)
@@ -61,7 +61,7 @@ class HipchatApi:
             'message': message,
         }
         if room.is_private:
-            token = HipchatAuth(self.token_provider.get_token(room.addon, room))
+            token = HipchatAuth(self.token_provider.get_token(room.addon, room).access_token)
         else:
             token = self.auth
         r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=token)
