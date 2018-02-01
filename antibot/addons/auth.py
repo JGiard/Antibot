@@ -61,6 +61,8 @@ class AuthChecker:
             jwt.decode(jwt_str, key=installation.oauth_secret)
             user = self.users_repo.by_id(int(jwt_data['sub']))
             room = self.rooms_repo.by_id(int(jwt_data['context']['room_id']))
+            if room is None:
+                room = Room('', jwt_data['context']['room_id'], 'Private', True, addon)
             return AuthResult(user, room)
         except InvalidTokenError:
             return False

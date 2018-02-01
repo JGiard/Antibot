@@ -6,6 +6,7 @@ import requests
 from pynject import pynject
 from requests import HTTPError
 
+from antibot.addons.tokens import TokenProvider
 from antibot.constants import API_ENDPOINT
 from antibot.domain.api import HipchatAuth
 from antibot.domain.configuration import Configuration
@@ -18,9 +19,10 @@ DEFAULT_PARAMS = {'max-results': 1000, 'expand': 'items'}
 
 @pynject
 class HipchatApi:
-    def __init__(self, configuration: Configuration):
+    def __init__(self, configuration: Configuration, token_provider: TokenProvider):
         self.jid = JID(configuration.jid)
         self.auth = HipchatAuth(configuration.api_token)
+        self.token_provider = token_provider
 
     def list_users(self) -> List[User]:
         for item in requests.get(join(API_ENDPOINT, 'user'), params=DEFAULT_PARAMS, auth=self.auth).json()['items']:
@@ -43,7 +45,11 @@ class HipchatApi:
             'message_format': 'html',
             'message': message,
         }
-        r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=self.auth)
+        if room.is_private:
+            token = HipchatAuth(self.token_provider.get_token(room.addon, room))
+        else:
+            token = self.auth
+        r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=token)
         try:
             r.raise_for_status()
         except HTTPError:
@@ -54,7 +60,11 @@ class HipchatApi:
             'message_format': 'text',
             'message': message,
         }
-        r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=self.auth)
+        if room.is_private:
+            token = HipchatAuth(self.token_provider.get_token(room.addon, room))
+        else:
+            token = self.auth
+        r = requests.post(join(API_ENDPOINT, 'room/{}/notification'.format(room.api_id)), json=data, auth=token)
         try:
             r.raise_for_status()
         except HTTPError:
