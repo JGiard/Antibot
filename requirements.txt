@@ -2,6 +2,7 @@ pymongo
 requests
 injector
 pyckson
+pytz
 schedule
 slackclient
 arrow

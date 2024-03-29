@@ -1,4 +1,5 @@
 import atexit
+import os
 import traceback
 from inspect import getmembers
 from threading import Thread
@@ -35,11 +36,12 @@ class Scheduler:
         self.injector = injector
         self.watch = watch
         self.watch_thread = Thread(target=watch.run)
+        self.tz = os.getenv("SCHEDULER_TIMEZONE")
 
     def bootstrap(self):
         for plugin in self.plugins.plugins:
             for method, hour in find_daily_jobs(plugin):
-                schedule.every().day.at(hour).do(self.run, plugin, method)
+                schedule.every().day.at(hour, self.tz).do(self.run, plugin, method)
         self.watch_thread.start()
 
         def stop():
