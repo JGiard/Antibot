@@ -4,7 +4,7 @@ injector
 pyckson
 pytz
 schedule
-slackclient
+slack_sdk
 arrow
 bottle
 pytest

@@ -11,8 +11,8 @@ from antibot.user import User
 from injector import inject, singleton
 from pyckson import parse, serialize, dumps
 from requests import HTTPError
-from slack import WebClient
-from slack.errors import SlackApiError
+from slack_sdk import WebClient
+from slack_sdk.errors import SlackApiError
 
 
 @singleton

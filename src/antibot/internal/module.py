@@ -4,7 +4,7 @@ from typing import List, Type
 from injector import Module, Binder, singleton, inject, NoScope
 from pymongo.database import Database
 from pymongo.mongo_client import MongoClient
-from slack import WebClient
+from slack_sdk import WebClient
 
 from antibot.internal.configuration import Configuration
 from antibot.internal.plugins import PluginsCollection

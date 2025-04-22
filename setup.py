@@ -30,7 +30,7 @@ setup(name='antibot',
           'pyckson',
           'pytz',
           'schedule',
-          'slackclient',
+          'slack_sdk',
           'arrow',
           'bottle'
       ],
