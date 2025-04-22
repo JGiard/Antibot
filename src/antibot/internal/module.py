@@ -25,7 +25,7 @@ def slack_client_provider(configuration: Configuration) -> WebClient:
 
 
 class AntibotModule(Module):
-    def __init__(self, plugins: List[Type[AntibotPlugin]], submodules=List[Type[Module]]):
+    def __init__(self, plugins: List[Type[AntibotPlugin]], submodules: List[Type[Module]]):
         self.plugins = plugins
         self.submodules = submodules
 

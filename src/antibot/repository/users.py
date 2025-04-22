@@ -1,5 +1,5 @@
 from operator import itemgetter
-from typing import Optional, List, Iterable
+from typing import Optional, List
 
 from injector import singleton, inject
 

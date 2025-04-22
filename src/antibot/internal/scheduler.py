@@ -54,5 +54,5 @@ class Scheduler:
         try:
             instance = self.injector.get(cls)
             method(instance)
-        except Exception as e:
+        except Exception:
             traceback.print_exc()

@@ -21,7 +21,7 @@ class WsRunner:
         request_key = request.params.get('apikey') or request.headers.get('X-Gitlab-Token')
         if not getattr(method, NO_AUTH, False) and self.configuration.ws_api_key != request_key:
             abort(401, 'Could not verify api key')
-        ip = request.get_header('X-Forwarded-For', request.environ.get('REMOTE_ADDR'))
+        request.get_header('X-Forwarded-For', request.environ.get('REMOTE_ADDR'))
         instance = self.injector.get(plugin)
 
         with self.debugger.wrap(request.json):
