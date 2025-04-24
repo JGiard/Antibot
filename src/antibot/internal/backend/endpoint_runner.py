@@ -32,5 +32,5 @@ class EndpointRunner:
 
             t = Thread(target=runner, args=[method, instance, method_args])
             t.start()
-            return
+            return None
         return method(instance, **method_args)

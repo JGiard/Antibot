@@ -55,3 +55,4 @@ class ViewSubmitRunner:
                         'errors': {
                             reply.block_id: reply.message
                         }}
+        return None

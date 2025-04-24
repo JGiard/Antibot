@@ -35,3 +35,4 @@ class ActionRunner:
                 return self.view_closed.run(json_data)
             elif json_data['type'] == 'view_submission':
                 return self.view_sumbit.run(json_data)
+            return None
